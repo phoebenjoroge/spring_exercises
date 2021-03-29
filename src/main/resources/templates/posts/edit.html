@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments/header :: main-head('Edit Post')"></head>
+</head>
+<body>
+<nav th:replace="fragments/nav :: navbar" />
+<main class="container">
+    <h1>Create Posts Here</h1>
+    <form th:action="${'/posts/'+ editPost.id +'/update'}"  method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" th:value="${editPost.title}">
+        </div>
+        <div class="form-group">
+            <label for="post">Main post</label>
+            <textarea name="body" class="form-control" id="post" th:value="${editPost.body}"  rows="10"></textarea>
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="exportFile">Choose File</label>-->
+<!--            <input type="file" name="description" class="form-control-file" id="exportFile">-->
+<!--        </div>-->
+        <button>Submit</button>
+    </form>
+</main>
+
+<nav th:replace="fragments/footer :: footer" />
+</body>
+</html>

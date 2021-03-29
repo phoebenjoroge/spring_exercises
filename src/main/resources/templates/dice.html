@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <head th:replace="fragments/header :: main-head('Roll Dice')"></head>
 </head>
 <body>
-$END$
+    <h1>Welcome to the dice rolling game</h1>
+    <h3>Pick a number to simulate your roll</h3>
+
+    <form action="/roll-dice/1" method="post">
+        <input type="radio" name="dice1" id="roll-dice1" class="field" />
+        <button>1</button>
+    </form>
+    <form action="/roll-dice/2" method="post">
+        <input type="radio" name="dice2" id="roll-dice2" class="field" />
+        <button>2</button>
+    </form>
+    <form action="/roll-dice/3" method="post">
+        <input type="radio" name="dice3" id="roll-dice3" class="field" />
+        <button>3</button>
+    </form>
+    <form action="/roll-dice/4" method="post">
+        <input type="radio" name="dice4" id="roll-dice4" class="field" />
+        <button>4</button>
+    </form>
 </body>
 </html>

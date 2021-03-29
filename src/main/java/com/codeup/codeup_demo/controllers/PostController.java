@@ -22,23 +22,48 @@ public class PostController {
 
     @GetMapping(path = "/posts")
     public String allPosts(Model viewModel) {
-        List<Post> posts = postDao.findByTitle("test1");
-        viewModel.addAttribute("posts", posts);
+//        List<Post> posts = postDao.findByTitle("test1");
+        List<Post> allPosts = postDao.findAll();
+        viewModel.addAttribute("posts", allPosts);
         return "posts/index";
     }
     @GetMapping(path = "/posts/{id}")
-    public String onePost(@PathVariable int id, Model viewModel) {
-        viewModel.addAttribute("post", new Post("Trial", "This is a test"));
+    public String onePost(@PathVariable long id, Model viewModel) {
+//        viewModel.addAttribute("post", new Post("Trial", "This is a test"));
+        viewModel.addAttribute("post", postDao.getOne(id));
         return "posts/show";
     }
     @GetMapping(path = "/posts/create")
-    @ResponseBody
     public String createPost() {
-        return "Form for creating post goes here";
+        return "posts/create";
     }
     @PostMapping(path = "/posts/create")
     @ResponseBody
-    public String sendPost() {
+    public String viewPost(@RequestParam("title") String title, @RequestParam("body") String body) {
+        Post newPost = new Post(title, body);
+        postDao.save(newPost);
         return "Display created post" ;
+    }
+    @GetMapping(path = "/posts/{id}/update")
+    public String updatePost(@PathVariable long id, Model viewModel) {
+
+        Post onePost = postDao.getOne(id);
+
+        viewModel.addAttribute("editPost",onePost);
+
+        return "posts/edit";
+    }
+    @PostMapping(path = "/posts/{id}/update")
+    @ResponseBody
+    public String updatePost(@PathVariable Long id, @RequestParam("title") String title, @RequestParam("body") String body) {
+        Post updatePost = new Post(id, title, body);
+        postDao.save(updatePost);
+        return "Past has been updated" ;
+    }
+    @PostMapping(path = "/posts/{id}/delete")
+    @ResponseBody
+    public String deletePost(@PathVariable Long id){
+        postDao.deleteById(id);
+        return "Post has been deleted" ;
     }
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments/header :: main-head('Create Post')"></head>
+</head>
+<body>
+<nav th:replace="fragments/nav :: navbar" />
+<main class="container">
+    <h1>Create Posts Here</h1>
+    <form action="/posts/create" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="Enter Title Here">
+        </div>
+        <div class="form-group">
+            <label for="post">Main post</label>
+            <textarea class="form-control" name="body" id="post" rows="10"></textarea>
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="exportFile">Choose File</label>-->
+<!--            <input type="file" class="form-control-file" id="exportFile">-->
+<!--        </div>-->
+        <button>Submit</button>
+    </form>
+</main>
+
+<nav th:replace="fragments/footer :: footer" />
+</body>
+</html>

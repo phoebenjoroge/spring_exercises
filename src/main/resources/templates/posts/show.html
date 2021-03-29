@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <head th:replace="fragments/header :: main-head('Posts')"></head>
 </head>
 <body>
-$END$
+<nav th:replace="fragments/nav :: navbar" />
+<main class="container">
+    <div class="post">
+        <h1 th:text="${post.title}"></h1>
+        <p th:text="${post.body}"></p>
+    </div>
+    <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
+        <input type="submit" value="Delete Post">
+    </form>
+</main>
+
+<nav th:replace="fragments/footer :: footer" />
 </body>
 </html>

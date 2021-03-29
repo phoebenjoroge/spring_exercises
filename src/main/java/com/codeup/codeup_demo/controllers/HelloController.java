@@ -1,4 +1,4 @@
-package com.codeup.codeup_demo;
+package com.codeup.codeup_demo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.*;
 class HelloController {
 
     @GetMapping("/hello")
-    @ResponseBody
     public String hello() {
-        return "Hello from Spring!";
+        return "home";
     }
 
     @GetMapping("/hello/{name}")
