@@ -11,13 +11,14 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
-
     @Column(nullable = false, length = 250)
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
+
+    @OneToOne
+    private User owner;
 
     public Post() {
 
@@ -32,6 +33,19 @@ public class Post {
         this.id = id;
         this.title = title;
         this.body = body;
+    }
+
+    public Post(long id, String title, String body, User owner) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.owner = owner;
+    }
+
+    public Post(String title, String body, User owner) {
+        this.title = title;
+        this.body = body;
+        this.owner = owner;
     }
 
     public long getId() { return id; }
@@ -52,5 +66,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
