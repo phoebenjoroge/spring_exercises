@@ -1,6 +1,7 @@
 package com.codeup.codeup_demo.controllers;
 
 import com.codeup.codeup_demo.models.Post;
+import com.codeup.codeup_demo.models.User;
 import com.codeup.codeup_demo.repositories.PostRepository;
 import com.codeup.codeup_demo.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -38,29 +39,27 @@ public class PostController {
         return "posts/show";
     }
     @GetMapping(path = "/posts/create")
-    public String createPost() {
+    public String createPost(Model viewModel) {
+        viewModel.addAttribute("createPost", new Post());
         return "posts/create";
     }
     @PostMapping(path = "/posts/create")
-    @ResponseBody
-    public String viewPost(@RequestParam("title") String title, @RequestParam("body") String body) {
-        Post newPost = new Post(title, body);
+    public String viewPost(@ModelAttribute Post newPost) {
+        User userForPost = userDao.getOne(2L);
+        newPost.setOwner(userForPost);
         postDao.save(newPost);
-        return "Display created post" ;
+        return "/posts/index";
     }
     @GetMapping(path = "/posts/{id}/update")
     public String updatePost(@PathVariable long id, Model viewModel) {
-
         Post onePost = postDao.getOne(id);
         viewModel.addAttribute("editPost",onePost);
         return "posts/edit";
     }
     @PostMapping(path = "/posts/{id}/update")
-    @ResponseBody
-    public String updatePost(@PathVariable Long id, @RequestParam("title") String title, @RequestParam("body") String body) {
-        Post updatePost = new Post(id, title, body);
-        postDao.save(updatePost);
-        return "Past has been updated" ;
+    public String updatePost(@PathVariable Long id, @ModelAttribute Post newPost) {
+        postDao.save(newPost);
+        return "/posts/index" ;
     }
     @PostMapping(path = "/posts/{id}/delete")
     @ResponseBody

@@ -1,3 +1,31 @@
 body {
-    background-color: lightgray;
+    background-color: grey;
+}
+.container{
+    background-color: papayawhip;
+}
+.navigation {
+    /*border: 1px solid rgb(212, 20, 20);*/
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex: 3;
+    justify-content: space-evenly;
+    font-size: large;
+    font-weight: bold;
+}
+a {
+    color: black;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-decoration: none;
+    padding: 20px 5px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+a:hover {
+    color: mediumblue;
 }

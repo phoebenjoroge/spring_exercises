@@ -11,12 +11,13 @@
         <p th:text="${post.body}">
         <p>Created by <span th:text="${post.owner.firstName}"></span></p>
     </div>
-    <button th:action="${'/posts/'+ post.id +'/update'}" method="GET" class="btn-primary">Edit</button>
-    <button th:action="${'/posts/'+ post.id +'/delete'}" method="POST" class="btn-danger">Delete</button>
+    <div class="post" th:each="image : ${post.images}">
+        <img th:src="${image.path}" width="300px" height="auto">
+    </div>
 
-<!--    <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">-->
-<!--        <input type="submit" class="btn-danger" value="Delete Post">-->
-<!--    </form>-->
+    <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
+        <input type="submit" class="btn-danger" value="Delete Post">
+    </form>
     <form th:action="${'/posts/'+ post.id +'/update'}" method="GET" >
         <input type="submit" value="Edit Post" class="btn-primary">
     </form>
