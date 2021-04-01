@@ -8,5 +8,9 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findByTitle(String title);
+//    List<Post> findByTitle(String title);
+//    List<Post> findPostByTitleIsContainingOrBodyContaining(String term1, String term2);
+//    List<Post> findPostByTitleIsContaining(String term);
+//    List<Post> findPostsByBodyContainingOrTitleContaining(String searchParam);
+    List<Post> findByBodyIsLikeOrTitleIsLike(String term, String term2);
 }

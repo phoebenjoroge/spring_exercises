@@ -4,6 +4,8 @@ import com.codeup.codeup_demo.models.Post;
 import com.codeup.codeup_demo.models.User;
 import com.codeup.codeup_demo.repositories.PostRepository;
 import com.codeup.codeup_demo.repositories.UserRepository;
+import com.codeup.codeup_demo.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,10 @@ import java.util.List;
 
 @Controller
 public class PostController {
+
+
+    @Autowired
+    private EmailService emailService;
 
     private final PostRepository postDao;
     private final UserRepository userDao;
@@ -47,8 +53,9 @@ public class PostController {
     public String viewPost(@ModelAttribute Post newPost) {
         User userForPost = userDao.getOne(2L);
         newPost.setOwner(userForPost);
-        postDao.save(newPost);
-        return "/posts/index";
+        Post savedPost = postDao.save(newPost);
+        emailService.prepareAndSend(savedPost, "You have created a new post", "Your post has been successfully!");
+        return "redirect:/posts";
     }
     @GetMapping(path = "/posts/{id}/update")
     public String updatePost(@PathVariable long id, Model viewModel) {
@@ -59,7 +66,7 @@ public class PostController {
     @PostMapping(path = "/posts/{id}/update")
     public String updatePost(@PathVariable Long id, @ModelAttribute Post newPost) {
         postDao.save(newPost);
-        return "/posts/index" ;
+        return "redirect:/posts" ;
     }
     @PostMapping(path = "/posts/{id}/delete")
     @ResponseBody
@@ -67,4 +74,12 @@ public class PostController {
         postDao.deleteById(id);
         return "Post has been deleted" ;
     }
+
+    @PostMapping(path = "/posts/search")
+    public String searchPost(Model viewModel, @RequestParam(name = "search") String searchParam) {
+//        searchParam = "%"+searchParam+"%";
+        viewModel.addAttribute("post", postDao.findByBodyIsLikeOrTitleIsLike(searchParam, searchParam));
+        return "posts/results";
+    }
+
 }
