@@ -13,8 +13,14 @@
                         <li><a th:href="@{/posts}">HOME</a></li>
                         <li><a th:href="@{/posts/show}">POSTS</a></li>
                         <li><a href="">PROFILE</a></li>
-                        <li><a href="">LOGIN</a></li>
-                        <li><a href="">LOGOUT</a></li>
+                        <form th:action="@{/login}" th:method="get">
+                            <button class="btn-link btn" style="margin-top: 16px">LOGIN</button>
+                        </form>
+                        <li>
+                            <form th:action="@{/logout}" th:method="post">
+                                <button class="btn-link btn" style="margin-top: 16px">LOGOUT</button>
+                            </form>
+                        </li>
                     </ul>
 
                 <form class="d-flex" th:action="@{/posts/search}" th:method="POST">

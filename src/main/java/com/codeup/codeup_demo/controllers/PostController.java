@@ -6,6 +6,7 @@ import com.codeup.codeup_demo.repositories.PostRepository;
 import com.codeup.codeup_demo.repositories.UserRepository;
 import com.codeup.codeup_demo.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +52,7 @@ public class PostController {
     }
     @PostMapping(path = "/posts/create")
     public String viewPost(@ModelAttribute Post newPost) {
-        User userForPost = userDao.getOne(2L);
+        User userForPost = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         newPost.setOwner(userForPost);
         Post savedPost = postDao.save(newPost);
         emailService.prepareAndSend(savedPost, "You have created a new post", "Your post has been successfully!");
@@ -65,6 +66,8 @@ public class PostController {
     }
     @PostMapping(path = "/posts/{id}/update")
     public String updatePost(@PathVariable Long id, @ModelAttribute Post newPost) {
+        User userForPost = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        newPost.setOwner(userForPost);
         postDao.save(newPost);
         return "redirect:/posts" ;
     }
