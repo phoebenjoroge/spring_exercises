@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -79,5 +80,17 @@ public class PostsIntegrationTests {
     public void testIfUserSessionIsActive() throws Exception {
         // It makes sure the returned session is not null
         assertNotNull(httpSession);
+    }
+
+    @Test
+    public void testCreatePost() throws Exception {
+        // Makes a Post request to /posts/create and expect a redirection to the Posts
+        this.mvc.perform(
+                post("/posts/create").with(csrf())
+                        .session((MockHttpSession) httpSession)
+                        // Add all the required parameters to your request like this
+                        .param("title", "test")
+                        .param("body", "for sale"))
+                .andExpect(status().is3xxRedirection());
     }
 }
