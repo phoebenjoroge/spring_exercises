@@ -79,9 +79,9 @@ public class PostController {
     }
 
     @PostMapping(path = "/posts/search")
-    public String searchPost(Model viewModel, @RequestParam(name = "search") String searchParam) {
-//        searchParam = "%"+searchParam+"%";
-        viewModel.addAttribute("post", postDao.findByBodyIsLikeOrTitleIsLike(searchParam, searchParam));
+    public String searchPost(Model viewModel, @RequestParam(name = "search") String term) {
+        term = "%"+term+"%";
+        viewModel.addAttribute("post", postDao.searchByBodyLike(term));
         return "posts/results";
     }
 
