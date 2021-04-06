@@ -6,8 +6,7 @@
 <body>
 <nav th:replace="fragments/nav :: navbar" />
 <main class="container">
-    <h1 class="center">All Posts</h1>
-    <h2>Latest posts</h2>
+    <h2 class="center">Latest posts</h2>
     <div class="post" th:each="post : ${posts}">
         <a th:href="${'/posts/'+ post.id}"><h3 th:text="${post.title}"></h3></a>
         <p th:text="${post.body}"></p>
