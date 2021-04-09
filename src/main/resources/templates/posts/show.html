@@ -5,24 +5,48 @@
 </head>
 <body>
 <nav th:replace="fragments/nav :: navbar" />
-<main class="container">
-    <div class="post">
-        <h1 th:text="${post.title}"></h1>
-        <p th:text="${post.body}">
-        <p>Created by <span th:text="${post.owner.firstName}"></span></p>
-    </div>
-    <div class="post" th:each="image : ${post.images}">
-        <img th:src="${image.path}" width="300px" height="auto">
-    </div>
+<div class="col-12" th:replace="fragments/nav :: heading"></div>
+<main class="content">
 
-    <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">
-        <input type="submit" class="btn-danger" value="Delete Post">
-    </form>
-    <form th:action="${'/posts/'+ post.id +'/update'}" method="GET" >
-        <input type="submit" value="Edit Post" class="btn-primary">
-    </form>
+<!--    <div class="post">-->
+<!--        <h1 th:text="${post.title}"></h1>-->
+<!--        <p th:text="${post.body}"></p>-->
+<!--        <p>Created by <span th:text="${post.owner.firstName}"></span></p>-->
+<!--    </div>-->
+<!--    <div class="post" th:each="image : ${post.images}">-->
+<!--        <img th:src="${image.path}" width="300px" height="auto">-->
+<!--    </div>-->
+
+<!--    <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST">-->
+<!--        <input type="submit" class="btn-danger" value="Delete Post">-->
+<!--    </form>-->
+<!--    <form th:action="${'/posts/'+ post.id +'/update'}" method="GET" >-->
+<!--        <input type="submit" value="Edit Post" class="btn-primary">-->
+<!--    </form>-->
+
+
+            <div class="body">
+                <h2  th:text="${post.title}"></h2>
+                <div class="image" th:each="image : ${post}">
+                    <img th:src="${post.imageUrl}" width="85%" height="400px" class="center">
+                </div>
+                    <p  th:text="${post.body}"></p>
+                    <p>Created by <span th:text="${post.owner.firstName}"></span></p>
+<!--                <a th:href="@{'/posts/'+ post.id +'/update'}" class="btn btn-primary">Go somewhere</a>-->
+                    <div class="btn-group">
+                        <form th:action="${'/posts/'+ post.id +'/update'}" method="GET" class="button">
+<!--                            <input type="submit" value="Edit Post" class="btn btn-light">-->
+                            <button>Edit Post</button>
+                        </form>
+                        <form th:action="${'/posts/'+ post.id +'/delete'}" method="POST" class="button">
+<!--                            <input type="submit" class="btn btn-danger" value="Delete Post">-->
+                            <button>Delete</button>
+                        </form>
+                    </div>
+
+            </div>
+
 </main>
-
 <nav th:replace="fragments/footer :: footer" />
 </body>
 </html>

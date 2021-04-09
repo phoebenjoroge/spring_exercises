@@ -18,31 +18,35 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    @Column(nullable = true, name="image_url", columnDefinition = "TEXT")
+    private String imageUrl;
+
     @OneToOne
     private User owner;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<Image> images;
 
     public Post() {
 
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String body, String imageUrl) {
         this.title = title;
         this.body = body;
+        this.imageUrl = imageUrl;
     }
 
-    public Post(long id, String title, String body) {
+    public Post(long id, String title, String body, String imageUrl) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.imageUrl = imageUrl;
     }
 
-    public Post(long id, String title, String body, User owner) {
+    public Post(long id, String title, String body, User owner, String imageUrl) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.imageUrl = imageUrl;
         this.owner = owner;
     }
 
@@ -50,6 +54,14 @@ public class Post {
         this.title = title;
         this.body = body;
         this.owner = owner;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public long getId() { return id; }
@@ -80,11 +92,5 @@ public class Post {
         this.owner = owner;
     }
 
-    public List<Image> getImages() {
-        return images;
-    }
 
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
 }

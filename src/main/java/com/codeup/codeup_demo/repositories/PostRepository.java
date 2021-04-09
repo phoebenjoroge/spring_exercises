@@ -18,4 +18,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("from Post post where post.body like %:term%")
     List<Post> searchByBodyLike(@Param("term") String term);
 
+    @Query("from Post post where post.body like %:term%")
+    List<Post> searchByBodyLikeOrSearchTitleLike(@Param("term") String term, @Param("term")String term1);
 }

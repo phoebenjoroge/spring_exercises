@@ -5,9 +5,11 @@
 </head>
 <body>
 <nav th:replace="fragments/nav :: navbar" />
-<main class="container">
-    <h1>Create Posts Here</h1>
-    <form th:action="@{/posts/create}" th:method="post" th:object="${createPost}">
+<div class="col-12" th:replace="fragments/nav :: heading"></div>
+<main class="content">
+    <h1>Create Post</h1>
+    <div class="main-content">
+    <form th:action="@{/posts/create}" th:method="post" th:object="${createPost}" class="form">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Enter Title Here">
@@ -16,12 +18,27 @@
             <label for="post">Main post</label>
             <textarea class="form-control" th:field="*{body}" id="post" rows="10"></textarea>
         </div>
+        <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input type="text" th:field="*{imageUrl}" class="form-control" id="imagePath">
+        </div>
 <!--        <div class="form-group">-->
-<!--            <label for="exportFile">Choose File</label>-->
-<!--            <input type="file" class="form-control-file" id="exportFile">-->
+<!--            <label for="file">Choose File</label>-->
+<!--            <input type="file" th:field="*{imageUrl}" class="form-control-file" name="file" id="file">-->
 <!--        </div>-->
+<!--        <div class="file-field input-field">-->
+<!--            <div class="btn">-->
+<!--                <span>Upload Image</span>-->
+<!--                <input type="file" name="file" id="file" />-->
+<!--            </div>-->
+<!--            <div class="file-path-wrapper">-->
+<!--                <input class="file-path validate" type="text" />-->
+<!--            </div>-->
+<!--        </div>-->
+        <br>
         <button>Submit</button>
     </form>
+    </div>
 </main>
 
 <nav th:replace="fragments/footer :: footer" />

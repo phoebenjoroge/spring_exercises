@@ -6,17 +6,22 @@ import com.codeup.codeup_demo.repositories.PostRepository;
 import com.codeup.codeup_demo.repositories.UserRepository;
 import com.codeup.codeup_demo.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PostController {
-
 
     @Autowired
     private EmailService emailService;
@@ -58,6 +63,8 @@ public class PostController {
         emailService.prepareAndSend(savedPost, "You have created a new post", "Your post has been successfully!");
         return "redirect:/posts";
     }
+
+
     @GetMapping(path = "/posts/{id}/update")
     public String updatePost(@PathVariable long id, Model viewModel) {
         Post onePost = postDao.getOne(id);

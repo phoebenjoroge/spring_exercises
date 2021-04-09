@@ -5,12 +5,34 @@
 </head>
 <body>
 <nav th:replace="fragments/nav :: navbar" />
-<main class="container">
-    <h2 class="center">Latest posts</h2>
-    <div class="post" th:each="post : ${posts}">
-        <a th:href="${'/posts/'+ post.id}"><h3 th:text="${post.title}"></h3></a>
-        <p th:text="${post.body}"></p>
-    </div>
+<div class="col-12" th:replace="fragments/nav :: heading"></div>
+<main class="row content">
+
+        <div class="col-lg-8 col-sm-12 ">
+
+                <div class="main-content " th:each="post : ${posts}">
+                    <a th:href="${'/posts/'+ post.id}"><h3 class="card-title" th:text="${post.title}"></h3></a>
+                    <p th:text="${post.body}"></p>
+                </div>
+
+        </div>
+    <!--    side section-->
+        <div class="col-lg-3">
+            <div class="side-content">
+                <h3>More info here</h3>
+                <br>
+                <form class="navbar-form " th:action="@{/posts/search}" th:method="POST">
+                    <div class="input-group">
+                        <input type="text" class="form-control"  name="search">
+
+                        <button type="submit">Search</button>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
 </main>
 
 
