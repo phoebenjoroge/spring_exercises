@@ -35,7 +35,7 @@ public class PostController {
     }
 
 
-    List<Post> posts = new ArrayList<>();
+//    List<Post> posts = new ArrayList<>();
 
     @GetMapping(path = "/posts")
     public String allPosts(Model viewModel) {
