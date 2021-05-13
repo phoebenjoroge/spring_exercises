@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <head th:replace="fragments/header :: main-head('Footer')"></head>
 </head>
 <body>
 
 
 <footer th:fragment="footer" class="nav navbar">
-    <p>Footer info goes here</p>
+    <div class="row">
+        <div class="col-lg-5 side-content">
+            <h3>Some Info</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam voluptatem veniam, est atque cumque eum delectus sint!</p>
+        </div>
+        <div class="col-lg-3 side-content">
+            <h3>links here</h3>
+        </div>
+        <div class="col-lg-3 side-content">
+            <h3>links here</h3>
+        </div>
+    </div>
+    <div>
+       <a href=""> <p style="text-align: center"> ©2020 Copyright: Some link here </p></a>
+    </div>
 </footer>
 </body>
 </html>
