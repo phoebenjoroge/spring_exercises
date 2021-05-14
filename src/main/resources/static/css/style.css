@@ -48,20 +48,25 @@ li{
     /*padding: 3.4rem 0 2.6rem 0;*/
 }
 .main-content{
-    margin: 0 6rem 0;
+    margin: 0 5rem 0;
     padding: 2rem;
 }
 .side-content{
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 4rem;
 }
 footer{
     background-color: whitesmoke;
+    padding: 2rem;
 }
 .heading{
     color: grey;
     margin: 3rem 6rem 1rem;
     padding: 1rem;
+}
+.heading>a>p{
+    color: grey;
+    text-align: left;
 }
 .heading>a>h1{
     text-align: left;
@@ -82,4 +87,7 @@ hr{
 }
 .image{
     padding: 20px;
+}
+#commentForm {
+    display:none;
 }
