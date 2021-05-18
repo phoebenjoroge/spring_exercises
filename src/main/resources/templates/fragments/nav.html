@@ -10,7 +10,9 @@
 <!--        <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">-->
 <!--            <div class="container-fluid">-->
 <!--                <div class="navbar-header">-->
-<!--                    <a class="navbar-brand" th:href="@{/posts}">LogoHere</a>-->
+<!--                    <a class="navbar-brand" th:href="@{/posts}">-->
+<!--                        <img src="https://cdn.pixabay.com/photo/2016/12/07/15/15/lotus-with-hands-1889661_960_720.png" alt="" style="height: 60px; width: 60px; object-fit: contain">-->
+<!--                    </a>-->
 <!--                </div>-->
 <!--                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
 <!--                    <span class="navbar-toggler-icon"></span>-->
@@ -65,75 +67,72 @@
 <!--            </div>-->
 <!--        </nav>-->
 
-
-        <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-            <!-- Container wrapper -->
-            <div class="container-fluid">
-                <!-- Toggle button -->
-                <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarCenteredExample"
-                        aria-controls="navbarCenteredExample"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <!-- Collapsible wrapper -->
-                <div
-                        class="collapse navbar-collapse justify-content-center"
-                        id="navbarCenteredExample"
-                >
-                    <!-- Left links -->
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <!-- Navbar dropdown -->
-                        <li class="nav-item dropdown">
-                            <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    data-mdb-toggle="dropdown"
-                                    aria-expanded="false"
-                            >
-                                Dropdown
-                            </a>
-                            <!-- Dropdown menu -->
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-                            >Disabled</a
-                            >
-                        </li>
-                    </ul>
-                    <!-- Left links -->
+        <nav th:fragment="navbar">
+            <div class="nav-center" style="margin-top: -50px; ">
+                <!-- nav header -->
+                <div class="nav-header">
+                    <a th:href="@{/posts}">
+                        <img src="https://cdn.pixabay.com/photo/2016/12/07/15/15/lotus-with-hands-1889661_960_720.png" class="logo" alt="logo" style="height: 60px; width: 60px; object-fit: contain"/>
+                    </a>
+                    <button class="nav-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
-                <!-- Collapsible wrapper -->
+                <!-- links -->
+                <ul class="links">
+                    <li>
+                        <a th:href="@{/posts}">home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">about</a>
+                    </li>
+                    <li>
+                        <a href="projects.html">projects</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">contact</a>
+                    </li>
+                </ul>
+                <!-- social media -->
+                <ul class="social-icons">
+                    <li>
+                        <a href="https://www.facebook.com">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.twitter.com">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+<!--                    <li>-->
+<!--                        <a href="https://www.twitter.com">-->
+<!--                            <i class="fab fa-behance"></i>-->
+<!--                        </a>-->
+<!--                    </li>-->
+                    <li>
+                        <a href="https://www.linkedin.com">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.twitter.com">
+                            <i class="fab fa-sketch"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <!-- Container wrapper -->
         </nav>
-        <div class="heading" th:fragment="heading">
-            <a th:href="${'/posts'}"><h1>Artemis Writes</h1></a>
-            <p>Writing for writers</p>
-            <hr>
-        </div>
+<!--        <div class="heading side-nav" th:fragment="heading">-->
+
+<!--            <div class="centre">-->
+<!--&lt;!&ndash;                <h4>Quantum Fuzziness</h4>&ndash;&gt;-->
+<!--                <a th:href="${'/posts'}"><h1>Artemis Writes</h1>-->
+<!--                    <p>Writing for writers</p>-->
+<!--                </a>-->
+<!--                <hr>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
 </body>
