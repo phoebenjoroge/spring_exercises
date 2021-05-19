@@ -269,7 +269,7 @@ article p:first-of-type:first-letter {
     margin: 0 6px 0 0; }
 
 .side-nav {
-    position: fixed;
+    /*position: fixed;*/
     /*height: 70%;*/
     z-index: 1;
     font-size: 18px;
@@ -282,8 +282,8 @@ article p:first-of-type:first-letter {
     color: #ffffff;
     text-align: center;
     overflow: auto;
-    margin-top: 90px;
-    margin-bottom: 120px;
+    /*margin-top: 100px;*/
+    /*margin-bottom: 150px;*/
 }
 
 h4 {
@@ -341,10 +341,10 @@ h3 {
     line-height: 2rem; }
 
 main {
-    width: 60%;
+    /*width: 60%;*/
     position: relative;
     padding: 0;
-    margin: 0 0 0 40%;
+    /*margin: 0 0 0 40%;*/
 }
 
 article {
