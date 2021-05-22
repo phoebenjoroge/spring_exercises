@@ -43,10 +43,26 @@
                             <button>Delete</button>
                         </form>
                     </div>
+                <button type="button" id="formButton">Comment</button>
+
+                <form th:action="@{'/posts/'+ ${post.id}+'/comment'}" method="post" id="commentForm">
+                    <textarea name="comment">
+                        Enter your comment here
+                    </textarea>
+                    <button type="button" id="submit">Submit</button>
+                </form>
 
             </div>
 
 </main>
 <nav th:replace="fragments/footer :: footer" />
+<script>
+    $(document).ready(function() {
+        $("#formButton").click(function() {
+            $("#commentForm").toggle();
+        });
+    });
+</script>
+<script src="/js/main.js"></script>
 </body>
 </html>
